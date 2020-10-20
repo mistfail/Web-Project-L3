@@ -15,12 +15,13 @@
     <header>
         <h1 class="lien">Les Definitions</h1>
         <nav>
-
+            <!-- futures routes pour les autres pages -->
+            <router-link to='/'>Accueil</router-link>
         </nav>
     </header>
     <main>
         <router-view
-
+            :definitions="definitions"
         ></router-view>
     </main>
 </div>
