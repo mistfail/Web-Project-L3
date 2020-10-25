@@ -17,11 +17,13 @@
         <nav>
             <!-- futures routes pour les autres pages -->
             <router-link to='/'>Accueil</router-link>
+            <router-link to='/New'>Ajout</router-link>
         </nav>
     </header>
     <main>
         <router-view
             :definitions="definitions"
+            @add-def="adDef"
         ></router-view>
     </main>
 </div>

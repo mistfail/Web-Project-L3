@@ -27,5 +27,4 @@ module.exports = {
 article {
   display: flex;
 }
-
 </style>

@@ -1,7 +1,9 @@
 const Home = window.httpVueLoader('./components/Main.vue')
+const newDesc = window.httpVueLoader('./components/newDesc.vue')
 
 const routes = [
-    { path: '/', component: Home}
+    { path: '/', component: Home},
+    { path: '/New', component: newDesc}
 ]
 
 const router = new VueRouter({
@@ -19,6 +21,9 @@ var app = new Vue({
         this.definitions = res.data
     },
     methods: {
-
+        async adDef (article) {
+            const res = await axios.post('/api/definition', article)
+            this.definitions.push(res.data)
+        },
     }
 })
