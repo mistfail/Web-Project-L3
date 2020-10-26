@@ -1,9 +1,11 @@
 const Home = window.httpVueLoader('./components/Main.vue')
 const newDesc = window.httpVueLoader('./components/newDesc.vue')
+const Inscription = window.httpVueLoader('./components/Inscription.vue')
 
 const routes = [
     { path: '/', component: Home},
-    { path: '/New', component: newDesc}
+    { path: '/New', component: newDesc},
+    { path: '/Inscription', component: Inscription}
 ]
 
 const router = new VueRouter({
