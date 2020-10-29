@@ -12,7 +12,7 @@
 <script>
 module.exports = {
   props: {
-    definitions: {type: Array, default: []},
+
   },
   data () {
     return {

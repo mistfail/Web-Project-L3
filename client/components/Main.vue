@@ -1,8 +1,8 @@
 <template>
   <div>
-    <article v-for="definition in definitions" :key="definition.id">
+    <article v-for="definition in definitions">
         <div>
-          <h2>{{definition.id}} : {{ definition.name }}</h2>
+          <h2>{{ definition.name }}</h2>
           <div>{{ definition.def }}</div>
           <div>{{ definition.upvote }}</div>
         </div>

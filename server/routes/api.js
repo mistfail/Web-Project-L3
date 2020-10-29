@@ -1,11 +1,44 @@
 const express = require('express')
 const router = express.Router()
-const definitions = require('../data/definitions.js')
 
-router.get('/definitions', (req, res) => {
+const bcrypt = require('bcrypt')
+const { Client } = require('pg')
+
+const client = new Client({
+    user: 'postgres',
+    host: 'localhost',
+    password: '',
+    database: 'Urbandico'
+})
+
+client.connect()
+
+async function addDef(name, def, upvote){
+    const sql = "INSERT INTO public.definitions("+
+        "name, def, upvote)"+ " VALUES('"+name+"' ,'"+def+"' ,'"+upvote+"') RETURNING*"
+    await client.query({
+        text: sql
+    })
+}
+
+async function getDef() {
+    const sql = "SELECT name, def, upvote FROM public.definitions"
+    const defs = await client.query({
+        text: sql
+    })
+    return defs.rows
+}
+
+router.get('/definitions', async (req, res) => {
+    let defs = await getDef()
+    const definitions = []
+    for (let i = 0; i < defs.length; i++){
+        definitions.push(defs[i])
+    }
     res.json(definitions)
 })
-router.post('/definition', (req, res) =>{
+
+router.post('/definition', async (req, res) =>{
     const name = req.body.name
     const def = req.body.def
 
@@ -16,13 +49,13 @@ router.post('/definition', (req, res) =>{
     }
 
     const definition = {
-        id: definitions.length + 1,
         name: name,
         def: def,
         upvote: 0
     }
-    definitions.push(definition)
-    res.json(definition)
+
+    await addDef(definition.name, definition.def, definition.upvote)
 })
+
 
 module.exports = router

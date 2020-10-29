@@ -13,7 +13,7 @@
 
 <script>
 module.exports  = {
-name: "Inscription"
+  name: "Inscription"
 }
 </script>
 
