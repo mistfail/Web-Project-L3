@@ -7,15 +7,15 @@ const { Client } = require('pg')
 const client = new Client({
     user: 'postgres',
     host: 'localhost',
-    password: '',
+    password: 'Alex0606',
     database: 'Urbandico'
 })
 
 client.connect()
 
-async function addDef(name, def, upvote){
+async function addDef(id, name, def, upvote){
     const sql = "INSERT INTO public.definitions("+
-        "name, def, upvote)"+ " VALUES('"+name+"' ,'"+def+"' ,'"+upvote+"') RETURNING*"
+        "id, name, def, upvote)"+ " VALUES('"+id+"' ,'"+name+"' ,'"+def+"' ,'"+upvote+"') RETURNING*"
     await client.query({
         text: sql
     })
@@ -42,6 +42,9 @@ router.post('/definition', async (req, res) =>{
     const name = req.body.name
     const def = req.body.def
 
+    let lengthDefs = await getDef()
+    console.log(lengthDefs.length)
+
     if (typeof name !== 'string' || name === '' ||
         typeof def !== 'string' || def === ''){
         res.status(400).json({message: 'bad'})
@@ -49,12 +52,13 @@ router.post('/definition', async (req, res) =>{
     }
 
     const definition = {
+        id: lengthDefs.length,
         name: name,
         def: def,
         upvote: 0
     }
 
-    await addDef(definition.name, definition.def, definition.upvote)
+    await addDef(definition.id, definition.name, definition.def, definition.upvote)
 })
 
 
