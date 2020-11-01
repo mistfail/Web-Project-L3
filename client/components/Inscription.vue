@@ -12,8 +12,8 @@
 </template>
 
 <script>
-module.exports  = {
-  name: "Inscription"
+module.export  = {
+name: "Inscription"
 }
 </script>
 

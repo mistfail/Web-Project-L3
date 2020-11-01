@@ -27,5 +27,8 @@ var app = new Vue({
             const res = await axios.post('/api/definition', article)
             this.definitions.push(res.data)
         },
+        async inscription(email, password){
+            await axios.post('/api/register/', {email : email, password: password} );
+        }
     }
 })

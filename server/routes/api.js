@@ -62,4 +62,12 @@ router.post('/definition', async (req, res) =>{
 })
 
 
+router.post('/inscription', async(req , res) => {
+    let input ={
+        email : req.body.email,
+        password : req.body.password
+    }
+    const sql ="SELECT * FROM"
+})
+
 module.exports = router
