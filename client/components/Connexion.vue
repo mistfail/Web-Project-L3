@@ -27,7 +27,11 @@ module.exports  = {
   },
   methods: {
     signin () {
-      this.$emit('sign-in', this.user)
+      if(this.$emit('sign-in', this.user)){
+        console.log('Bravo')
+      }else{
+        console.log('Nul')
+      }
     }
   }
 }
