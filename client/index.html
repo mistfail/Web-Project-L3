@@ -16,20 +16,24 @@
         <img id ="logo" alt="Logo" src="ressources/Urban dico black.png">
         <nav>
             <!-- futures routes pour les autres pages -->
-            <router-link v-on:click="window.reload()" to='/' style="text-decoration:none">Accueil</router-link>
-            <router-link to='/New' style="text-decoration:none">Ajout</router-link>
-            <router-link to="/Inscription" style="text-decoration:none">Inscription</router-link>
+            <router-link to='/'>Accueil</router-link>
+            <router-link to='/New'>Ajout</router-link>
+            <router-link to="/Inscription">Inscription</router-link>
+            <router-link to="/Connexion">Connexion</router-link>
         </nav>
     </header>
     <main>
         <router-view
-            :definitions="definitions"
-            @add-def="adDef"
-            @add-users="inscription"
-        ></router-view>
+                :definitions="definitions"
+                @add-def="adDef"
+                @sign-up="signup"
+                @sign-in="signin">
+        </router-view>
     </main>
 </div>
-<script src="vue-application.js"></script>
+<script src="vue-application.js">
+
+</script>
 </body>
 <style>
     body{
