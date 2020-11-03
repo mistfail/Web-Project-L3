@@ -57,13 +57,35 @@ router.post('/definition', async (req, res) =>{
     await addDef(definition.id, definition.name, definition.def, definition.upvote)
 })
 
+router.post('/signup', async(req , res) => {
+    const name = req.body.name
+    const email = req.body.email
+    const password = req.body.password
 
-router.post('/inscription', async(req , res) => {
-    let input ={
-        email : req.body.email,
-        password : req.body.password
+    if(typeof name !== 'string' || name !== '' ||
+    typeof email !== 'string' || email !== '' ||
+    typeof password !== 'string' || password !== ''){
+        res.status(400).json({message : 'Bad Request'})
     }
-    const sql ="SELECT * FROM"
+
+    const sml = "SELECT name, def, upvote FROM public.definitions"
+    const users = await client.query({
+        text: sml
+    })
+
+    const user = {
+        id: users.rows.length,
+        name: name,
+        email: email,
+        password: password
+    }
+
+    const sql = "INSERT INTO public.users("+
+        "id, name, email, password)"+
+        " VALUES('"+user.id+"' ,'"+user.name+"' ,'"+user.email+"' ,'"+user.password+"') RETURNING*"
+    await client.query({
+        text: sql
+    })
 })
 
 module.exports = router
