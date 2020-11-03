@@ -2,18 +2,35 @@
 <html lang="fr">
 <head>
     <meta charset="utf-8">
-    <title>Urban Dico</title>
+
     <link rel="icon" href="https://media.discordapp.net/attachments/757943285758296127/770244241657036830/urban_dico_white.png" type="image/x-icon">
     <!-- Load Vue followed by Vue Router -->
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/http-vue-loader/src/httpVueLoader.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue-router/dist/vue-router.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <title>Urban Dico</title>
 </head>
 <body>
 <div id="app">
     <header>
-        <img id ="logo" alt="Logo" src="ressources/Urban dico black.png">
+        <div id="headerfirst">
+            <div id="menuder">
+                <img class="logo" src="ressources/menu-button.svg" alt="bouton de menu">
+                <ul id="nav">
+                    <li><router-link to='/'>Accueil</router-link></li>
+                </ul>
+            </div>
+            <img id="urbandico" alt="Logo" src="ressources/Urban dico white.png">
+            <router-link to="/Inscription"><img src="ressources/login.svg" alt="login" class="logo"></router-link>
+        </div>
+        <div id="headersecond">
+            <input id="recherche" type="text" placeholder="Recherche dans le dictionnaire">
+            <router-link to='/New'><img class="logo" src="ressources/plus.svg" alt="plus"></router-link>
+        </div>
+
+
+
         <nav>
             <!-- futures routes pour les autres pages -->
             <router-link to='/'>Accueil</router-link>
@@ -37,24 +54,53 @@
 </body>
 <style>
     body{
-        color: black
-    ;
+        background-color: #EBC5A4;
     }
-    #logo{
+    #nav{
+        display: none;
+        background-color: #EBC5A4;
+        box-shadow: 0 1px 2px #CCC;
+        position: absolute;
+        list-style-type: none;
+    }
+    #nav li{
+        width: 100%;
+        text-align: left;
+        padding: 5px;
+    }
+    header > #headerfirst #menuder:hover #nav{
+        display: block;
+    }
+    .logo{
+        height: 50px;
+        margin-left: 10px;
+        margin-top: 10px;
+        margin-right: 10px;
+    }
+    #headerfirst{
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+    }
+    #urbandico{
         height: 150px;
-        width: 150px;
-        margin-left: 20px;
-        margin-top: 20px;
+    }
+    #recherche{
+        width: 70%;
+        height: 50px;
+        font-size: 20px;
+    }
+    #headersecond{
+        display: flex;
+        align-items: center;
+        width: 100%;
+        justify-content: center;
     }
     header{
         display: flex;
+        flex-direction: column;
         align-items: center;
-    }
-    nav{
-        display: flex;
-        justify-content: space-around;
-        width: 100%;
-        font-size: 25px;
+        background-color: #6B3012;
     }
 </style>
 </html>
