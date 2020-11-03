@@ -100,15 +100,7 @@ router.post('/signin', async (req, res) => {
     console.log(email, password, users.rows)
 
     for(let i = 0; i < users.rows.length; i++){
-        const user = users.rows[i]
-        if(user.email === email){
-            if(user.password !== password){
-                res.status(400).json({message: 'Bad Request'})
-                return false
-            }else{
-                return true
-            }
-        }
+
     }
 })
 
