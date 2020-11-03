@@ -12,7 +12,7 @@
 </template>
 
 <script>
-module.export  = {
+module.exports  = {
 name: "Inscription"
 }
 </script>

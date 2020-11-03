@@ -16,7 +16,7 @@
         <h1 class="lien">Les Definitions</h1>
         <nav>
             <!-- futures routes pour les autres pages -->
-            <router-link v-on:click="window.reload()" to='/'>Accueil</router-link>
+            <router-link v-on:click="reload" to='/'>Accueil</router-link>
             <router-link to='/New'>Ajout</router-link>
             <router-link to="/Inscription">Inscription</router-link>
         </nav>
@@ -29,7 +29,13 @@
         ></router-view>
     </main>
 </div>
-<script src="vue-application.js"></script>
+<script src="vue-application.js">
+    function reload(){
+        setInterval( function (){
+            location.reload()
+        }, 1000)
+    }
+</script>
 </body>
 <style>
     .lien{

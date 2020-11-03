@@ -15,7 +15,8 @@ client.connect()
 
 async function addDef(id, name, def, upvote){
     const sql = "INSERT INTO public.definitions("+
-        "id, name, def, upvote)"+ " VALUES('"+id+"' ,'"+name+"' ,'"+def+"' ,'"+upvote+"') RETURNING*"
+        "id, name, def, upvote)"+
+        " VALUES('"+id+"' ,'"+name+"' ,'"+def+"' ,'"+upvote+"') RETURNING*"
     await client.query({
         text: sql
     })
@@ -31,11 +32,7 @@ async function getDef() {
 
 router.get('/definitions', async (req, res) => {
     let defs = await getDef()
-    const definitions = []
-    for (let i = 0; i < defs.length; i++){
-        definitions.push(defs[i])
-    }
-    res.json(definitions)
+    res.json(defs)
 })
 
 router.post('/definition', async (req, res) =>{
@@ -43,11 +40,10 @@ router.post('/definition', async (req, res) =>{
     const def = req.body.def
 
     let lengthDefs = await getDef()
-    console.log(lengthDefs.length)
 
     if (typeof name !== 'string' || name === '' ||
         typeof def !== 'string' || def === ''){
-        res.status(400).json({message: 'bad'})
+        res.status(400).json({message: 'Bad Request'})
         return
     }
 
