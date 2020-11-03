@@ -13,12 +13,12 @@
 <body>
 <div id="app">
     <header>
-        <h1 class="lien">Les Definitions</h1>
+        <img id ="logo" alt="Logo" src="ressources/Urban dico black.png">
         <nav>
             <!-- futures routes pour les autres pages -->
-            <router-link v-on:click="window.reload()" to='/'>Accueil</router-link>
-            <router-link to='/New'>Ajout</router-link>
-            <router-link to="/Inscription">Inscription</router-link>
+            <router-link v-on:click="window.reload()" to='/' style="text-decoration:none">Accueil</router-link>
+            <router-link to='/New' style="text-decoration:none">Ajout</router-link>
+            <router-link to="/Inscription" style="text-decoration:none">Inscription</router-link>
         </nav>
     </header>
     <main>
@@ -32,8 +32,25 @@
 <script src="vue-application.js"></script>
 </body>
 <style>
-    .lien{
-        font-family: Calibri,serif;
+    body{
+        color: black
+    ;
+    }
+    #logo{
+        height: 150px;
+        width: 150px;
+        margin-left: 20px;
+        margin-top: 20px;
+    }
+    header{
+        display: flex;
+        align-items: center;
+    }
+    nav{
+        display: flex;
+        justify-content: space-around;
+        width: 100%;
+        font-size: 25px;
     }
 </style>
 </html>
