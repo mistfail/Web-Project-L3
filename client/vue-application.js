@@ -24,11 +24,10 @@ var app = new Vue({
     },
     methods: {
         async adDef (article) {
-            const res = await axios.post('/api/definition', article)
-            this.definitions.push(res.data)
+            await axios.post('/api/definition', article)
         },
-        async inscription(email, password){
-            await axios.post('/api/register/', {email : email, password: password} );
+        async signup(user){
+            await axios.post('/api/signup/', user);
         }
     }
 })

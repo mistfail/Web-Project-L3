@@ -15,7 +15,8 @@ client.connect()
 
 async function addDef(id, name, def, upvote){
     const sql = "INSERT INTO public.definitions("+
-        "id, name, def, upvote)"+ " VALUES('"+id+"' ,'"+name+"' ,'"+def+"' ,'"+upvote+"') RETURNING*"
+        "id, name, def, upvote)"+
+        " VALUES('"+id+"' ,'"+name+"' ,'"+def+"' ,'"+upvote+"') RETURNING*"
     await client.query({
         text: sql
     })
@@ -31,11 +32,7 @@ async function getDef() {
 
 router.get('/definitions', async (req, res) => {
     let defs = await getDef()
-    const definitions = []
-    for (let i = 0; i < defs.length; i++){
-        definitions.push(defs[i])
-    }
-    res.json(definitions)
+    res.json(defs)
 })
 
 router.post('/definition', async (req, res) =>{
@@ -43,11 +40,10 @@ router.post('/definition', async (req, res) =>{
     const def = req.body.def
 
     let lengthDefs = await getDef()
-    console.log(lengthDefs.length)
 
     if (typeof name !== 'string' || name === '' ||
         typeof def !== 'string' || def === ''){
-        res.status(400).json({message: 'bad'})
+        res.status(400).json({message: 'Bad Request'})
         return
     }
 
@@ -61,13 +57,35 @@ router.post('/definition', async (req, res) =>{
     await addDef(definition.id, definition.name, definition.def, definition.upvote)
 })
 
+router.post('/signup', async(req , res) => {
+    const name = req.body.name
+    const email = req.body.email
+    const password = req.body.password
 
-router.post('/inscription', async(req , res) => {
-    let input ={
-        email : req.body.email,
-        password : req.body.password
+    if(typeof name !== 'string' || name !== '' ||
+    typeof email !== 'string' || email !== '' ||
+    typeof password !== 'string' || password !== ''){
+        res.status(400).json({message : 'Bad Request'})
     }
-    const sql ="SELECT * FROM"
+
+    const sml = "SELECT name, def, upvote FROM public.definitions"
+    const users = await client.query({
+        text: sml
+    })
+
+    const user = {
+        id: users.rows.length,
+        name: name,
+        email: email,
+        password: password
+    }
+
+    const sql = "INSERT INTO public.users("+
+        "id, name, email, password)"+
+        " VALUES('"+user.id+"' ,'"+user.name+"' ,'"+user.email+"' ,'"+user.password+"') RETURNING*"
+    await client.query({
+        text: sql
+    })
 })
 
 module.exports = router

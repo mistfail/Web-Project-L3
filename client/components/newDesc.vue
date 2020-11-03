@@ -1,9 +1,13 @@
 <template>
   <div>
-    <form @submit.prevent="adDef">
+    <form @submit="adDef">
       <h2>Ajouter une nouvelle definition</h2>
-      <input type="text" v-model="newDef.name" placeholder="Titre de la definition" required>
-      <textarea type="text" v-model="newDef.def" required></textarea>
+      <label>
+        <input type="text" v-model="newDef.name" placeholder="Titre de la definition" required>
+      </label>
+      <label>
+        <textarea v-model="newDef.def" required></textarea>
+      </label>
       <button type="submit">Ajouter</button>
     </form>
   </div>
