@@ -17,9 +17,9 @@
         <div id="headerfirst">
             <div id="menuder">
                 <img class="logo" src="ressources/menu-button.svg" alt="bouton de menu">
-                <ul id="nav">
-                    <li><router-link to='/'>Accueil</router-link></li>
-                </ul>
+                <div id="nav">
+                    <p><router-link to='/'>Accueil</router-link></p>
+                </div>
             </div>
             <img id="urbandico" alt="Logo" src="ressources/Urban dico white.png">
             <router-link to="/Inscription"><img src="ressources/login.svg" alt="login" class="logo"></router-link>
@@ -54,19 +54,18 @@
 </body>
 <style>
     body{
-        background-color: #EBC5A4;
+        background-color: #FADEC7;
     }
     #nav{
         display: none;
         background-color: #EBC5A4;
         box-shadow: 0 1px 2px #CCC;
         position: absolute;
-        list-style-type: none;
     }
-    #nav li{
-        width: 100%;
-        text-align: left;
-        padding: 5px;
+    #nav p{
+        text-align: center;
+        float: none;
+        margin: 10px;
     }
     header > #headerfirst #menuder:hover #nav{
         display: block;
