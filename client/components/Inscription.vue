@@ -1,5 +1,6 @@
 <template>
 <form  id="user" @submit="signup">
+  <h2>S'inscrire</h2>
   <div>
     <label for="email">
       <input type="email" v-model="user.email" id="email" placeholder="email" required>

@@ -1,11 +1,13 @@
 const Home = window.httpVueLoader('./components/Main.vue')
 const newDesc = window.httpVueLoader('./components/newDesc.vue')
 const Inscription = window.httpVueLoader('./components/Inscription.vue')
+const Connexion = window.httpVueLoader('./components/Connexion.vue')
 
 const routes = [
     { path: '/', component: Home},
     { path: '/New', component: newDesc},
-    { path: '/Inscription', component: Inscription}
+    { path: '/Inscription', component: Inscription},
+    { path: '/Connexion', component: Connexion}
 ]
 
 const router = new VueRouter({
@@ -27,7 +29,10 @@ var app = new Vue({
             await axios.post('/api/definition', article)
         },
         async signup(user){
-            await axios.post('/api/signup/', user);
+            await axios.post('/api/signup', user);
+        },
+        async signin(user){
+            await  axios.post('/api/signin', user)
         }
     }
 })

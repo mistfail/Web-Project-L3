@@ -66,9 +66,10 @@ router.post('/signup', async(req , res) => {
     typeof email !== 'string' || email !== '' ||
     typeof password !== 'string' || password !== ''){
         res.status(400).json({message : 'Bad Request'})
+        return
     }
 
-    const sml = "SELECT name, def, upvote FROM public.definitions"
+    const sml = "SELECT name, def, upvote FROM public.users"
     const users = await client.query({
         text: sml
     })
@@ -86,6 +87,21 @@ router.post('/signup', async(req , res) => {
     await client.query({
         text: sql
     })
+})
+
+router.post('/signin', async (req, res) => {
+    const email = req.body.email
+    const password = req.body.password
+
+    const sql = "SELECT * FROM public.users"
+    const users = await client.query({
+        text: sql
+    })
+    console.log(email, password, users.rows)
+
+    for(let i = 0; i < users.rows.length; i++){
+
+    }
 })
 
 module.exports = router
