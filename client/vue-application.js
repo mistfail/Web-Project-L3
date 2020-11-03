@@ -32,7 +32,7 @@ var app = new Vue({
             await axios.post('/api/signup', user);
         },
         async signin(user){
-            await  axios.post('/api/signin', user)
+            await  axios.post('/api/signin', user);
         }
     }
 })
