@@ -1,6 +1,6 @@
 <template>
   <div>
-    <article v-for="definition in definitions">
+    <article v-for="definition in definitions" class="definition">
         <div>
           <h2>{{ definition.name }}</h2>
           <div>{{ definition.def }}</div>
@@ -26,5 +26,7 @@ module.exports = {
 
 article {
   display: flex;
+  border: 2px solid black;
+  margin: 30px 20% 30px 20%;
 }
 </style>
