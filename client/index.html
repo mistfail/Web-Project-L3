@@ -41,10 +41,10 @@
     </header>
     <main>
         <router-view
+                :users="users"
                 :definitions="definitions"
                 @add-def="adDef"
-                @sign-up="signup"
-                @sign-in="signin">
+                @sign-up="signup">
         </router-view>
     </main>
 </div>
