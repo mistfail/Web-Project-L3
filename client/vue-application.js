@@ -18,11 +18,16 @@ var app = new Vue({
     router,
     el: '#app',
     data: {
-        definitions: []
+        definitions: [],
+    },
+    props:{
+        users: {type: Array, default: []}
     },
     async mounted () {
         const res = await axios.get('/api/definitions')
         this.definitions = res.data
+        const tab = await axios.get('/api/signin')
+        this.users = tab.data
     },
     methods: {
         async adDef (article) {
@@ -30,9 +35,6 @@ var app = new Vue({
         },
         async signup(user){
             await axios.post('/api/signup', user);
-        },
-        async signin(user){
-            await  axios.post('/api/signin', user);
         }
     }
 })

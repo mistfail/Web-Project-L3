@@ -11,6 +11,7 @@
           </div>
         </div>
     </article>
+    <button v-on:click="test">Test</button>
   </div>
 </template>
 
@@ -20,7 +21,9 @@ module.exports = {
     definitions: {type: Array, default: []},
   },
   methods: {
-
+    test(){
+      console.log(this.definitions)
+    }
   }
 }
 

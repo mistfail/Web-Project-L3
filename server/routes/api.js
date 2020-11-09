@@ -62,14 +62,14 @@ router.post('/signup', async(req , res) => {
     const email = req.body.email
     const password = req.body.password
 
-    if(typeof name !== 'string' || name !== '' ||
-    typeof email !== 'string' || email !== '' ||
-    typeof password !== 'string' || password !== ''){
+    if(typeof name !== 'string' || name === '' ||
+    typeof email !== 'string' || email === '' ||
+    typeof password !== 'string' || password === ''){
         res.status(400).json({message : 'Bad Request'})
         return
     }
 
-    const sml = "SELECT name, def, upvote FROM public.users"
+    const sml = "SELECT * FROM public.users"
     const users = await client.query({
         text: sml
     })
@@ -81,6 +81,14 @@ router.post('/signup', async(req , res) => {
         password: password
     }
 
+    for (let i = 0; i < users.rows.length; i++) {
+        if (users.rows[i].email === user.email) {
+            console.log(users.rows[i].email, user.email)
+            res.status(400).json({message: 'Bad Mdp'})
+            return
+        }
+    }
+
     const sql = "INSERT INTO public.users("+
         "id, name, email, password)"+
         " VALUES('"+user.id+"' ,'"+user.name+"' ,'"+user.email+"' ,'"+user.password+"') RETURNING*"
@@ -89,19 +97,12 @@ router.post('/signup', async(req , res) => {
     })
 })
 
-router.post('/signin', async (req, res) => {
-    const email = req.body.email
-    const password = req.body.password
-
+router.get('/signin', async (req, res) => {
     const sql = "SELECT * FROM public.users"
     const users = await client.query({
         text: sql
     })
-    console.log(email, password, users.rows)
-
-    for(let i = 0; i < users.rows.length; i++){
-
-    }
+    res.json(users.rows)
 })
 
 module.exports = router

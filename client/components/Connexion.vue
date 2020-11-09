@@ -17,6 +17,9 @@
 
 <script>
 module.exports  = {
+  props:{
+    users: {type: Array, default: []},
+  },
   data() {
     return {
       user: {
@@ -27,11 +30,12 @@ module.exports  = {
   },
   methods: {
     signin () {
-      if(this.$emit('sign-in', this.user)){
-        console.log('Bravo')
-      }else{
-        console.log('Nul')
+      for (let i = 0; i < this.users.length; i++){
+        if(this.users[i].email === this.user.email){
+           return this.users[i].password === this.user.password
+        }
       }
+      return false
     }
   }
 }

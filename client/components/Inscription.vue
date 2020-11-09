@@ -26,7 +26,7 @@ module.exports  = {
     return {
      user: {
        email: '',
-       name: 'Guest000001',
+       name: 'Guest',
        password: ''
      }
     }
