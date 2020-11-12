@@ -9,7 +9,7 @@ const routes = [
     { path: '/New', component: newDesc},
     { path: '/Inscription', component: Inscription},
     { path: '/Connexion', component: Connexion},
-    {path: '/Podium', component: Podium}
+    { path: '/Podium', component: Podium}
 ]
 
 const router = new VueRouter({
