@@ -36,6 +36,8 @@ article {
   border: 2px solid black;
   margin:60px 20% 30px 20%;
   box-shadow:9px -9px black;
+  background-color: white;
+  border-radius: 5px;
 }
 .fun{
   display: flex;

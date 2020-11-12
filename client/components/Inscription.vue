@@ -17,6 +17,9 @@
     </label>
   </div>
   <button type="submit">Inscription</button>
+  <div id="lien">
+    <p>déja inscrit ?    </p><router-link to="/Connexion">se connecter</router-link>
+  </div>
 </form>
 </template>
 
@@ -40,5 +43,30 @@ module.exports  = {
 </script>
 
 <style scoped>
-
+#user{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+button{
+  width: 200px;
+}
+input{
+  margin: 10px;
+  padding: 5px;
+  border: none;
+  border-radius: 5px;
+}
+button{
+  border: none;
+  background-color: black;
+  color : white;
+  border-radius: 5px;
+  padding: 5px;
+  margin-top: 10px;
+}
+#lien{
+  display: flex;
+  align-items: center;
+}
 </style>
