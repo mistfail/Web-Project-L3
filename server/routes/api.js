@@ -27,18 +27,8 @@ router.use((req, res, next) => {
     next()
 })
 
-
-async function addDef(id, name, def, upvote){
-    const sql = "INSERT INTO public.definitions("+
-        "id, name, def, upvote)"+
-        " VALUES('"+id+"' ,'"+name+"' ,'"+def+"' ,'"+upvote+"') RETURNING*"
-    await client.query({
-        text: sql
-    })
-}
-
 async function getDef() {
-    const sql = "SELECT name, def, upvote FROM public.definitions"
+    const sql = "SELECT * FROM public.definitions"
     const defs = await client.query({
         text: sql
     })
@@ -53,8 +43,11 @@ router.get('/definitions', async (req, res) => {
 router.post('/definition', async (req, res) =>{
     const name = req.body.name
     const def = req.body.def
+    const upvote = 0
+    const downvote = 0
+    const userid = req.session.User.user[0].id
 
-    let lengthDefs = await getDef()
+    let Defs = await getDef()
 
     if (typeof name !== 'string' || name === '' ||
         typeof def !== 'string' || def === ''){
@@ -62,14 +55,19 @@ router.post('/definition', async (req, res) =>{
         return
     }
 
-    const definition = {
-        id: lengthDefs.length,
-        name: name,
-        def: def,
-        upvote: 0
+    if(Defs.rowCount === 0){
+        const sql = "INSERT INTO definitions(id, name, def, upvote, userid, downvote) values (1, $1, $2, $3, $4, $5)"
+        const res = await client.query({
+            text : sql,
+            values:[name, def, upvote, userid, downvote]
+        })
+    }else{
+        const sql = "INSERT INTO definitions(id, name, def, upvote, userid, downvote) select 1+max(id),$1, $2, $3, $4, $5 from definitions"
+        const tes = await client.query({
+            text : sql,
+            values:[name, def, upvote, userid, downvote]
+        })
     }
-
-    await addDef(definition.id, definition.name, definition.def, definition.upvote)
 })
 
 async function verifUtilisateur(email){
