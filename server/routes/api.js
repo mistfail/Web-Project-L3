@@ -55,7 +55,7 @@ router.post('/definition', async (req, res) =>{
         return
     }
 
-    if(Defs.rowCount === 0){
+    if(Defs.length === 0){
         const sql = "INSERT INTO definitions(id, name, def, upvote, userid, downvote) values (1, $1, $2, $3, $4, $5)"
         const res = await client.query({
             text : sql,
