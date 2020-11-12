@@ -40,6 +40,11 @@ router.get('/definitions', async (req, res) => {
     res.json(defs)
 })
 
+router.get('/definition', async(req, res) =>{
+    let defs = await getDef()
+    res.json(defs)
+})
+
 router.post('/definition', async (req, res) =>{
     const name = req.body.name
     const def = req.body.def
