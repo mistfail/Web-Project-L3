@@ -14,20 +14,21 @@
 <body>
 <div id="app">
     <header>
-        <div id="headerfirst">
-            <div id="menuder">
+        <div class="headerfirst">
+            <div class="menuder">
                 <img class="logo" src="ressources/menu-button.svg" alt="bouton de menu">
-                <div id="nav">
+                <div class="nav">
                     <p><router-link to='/'>Accueil</router-link></p>
                     <p><router-link to="/Podium">Podium</router-link></p>
                 </div>
             </div>
-            <img id="urbandico" alt="Logo" src="ressources/Urban dico white.png">
+            <img class="urbandico" alt="Logo" src="ressources/Urban dico white.png">
             <router-link to="/Inscription"><img src="ressources/login.svg" alt="login" class="logo"></router-link>
         </div>
-        <div id="headersecond">
-            <input id="recherche" type="text" placeholder="Recherche dans le dictionnaire">
-            <router-link to='/New'><img class="logo" src="ressources/plus.svg" alt="plus"></router-link>
+
+        <div class="headersecond">
+            <input class="recherche" type="text" placeholder="Recherche dans le dictionnaire">
+            <router-link v-if="user[0] !== undefined" to='/New'><img class="logo" src="ressources/plus.svg" alt="plus"></router-link>
         </div>
 
         <nav>
@@ -57,18 +58,18 @@
     body{
         background-color: #FDDBD7;
     }
-    #nav{
+    .nav{
         display: none;
         background-color: #EBC5A4;
         box-shadow: 0 1px 2px #CCC;
         position: absolute;
     }
-    #nav p{
+    .nav p{
         text-align: center;
         float: none;
         margin: 10px;
     }
-    header > #headerfirst #menuder:hover #nav{
+    header > .headerfirst .menuder:hover #nav{
         display: block;
     }
     .logo{
@@ -77,20 +78,20 @@
         margin-top: 10px;
         margin-right: 10px;
     }
-    #headerfirst{
+    .headerfirst{
         display: flex;
         justify-content: space-between;
         width: 100%;
     }
-    #urbandico{
+    .urbandico{
         height: 150px;
     }
-    #recherche{
+    .recherche{
         width: 70%;
         height: 50px;
         font-size: 20px;
     }
-    #headersecond{
+    .headersecond{
         display: flex;
         align-items: center;
         width: 100%;
