@@ -31,6 +31,7 @@ module.exports  = {
   },
   methods: {
     signin () {
+      console.log(this.user)
       this.$emit('connect-user', this.user)
     }
   }

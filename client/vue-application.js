@@ -31,13 +31,14 @@ var app = new Vue({
         async adDef (article) {
             await axios.post('/api/definition', article)
         },
-        async signup(user){
-            const res = await axios.post('/api/signup', user);
+        async signup(users){
+            const res = await axios.post('/api/Inscription', users);
             this.users.push(res.data)
             alert('Inscription in vue-application')
         },
         async signin(user){
-            const res = await axios.post('/api/signin', user);
+            console.log(user)
+            const res = await axios.post('/api/Connexion', user);
             this.message = res.data.message
             this.user = res.data.user
             console.log(this.message, this.user)
