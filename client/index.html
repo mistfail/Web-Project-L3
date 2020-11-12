@@ -29,8 +29,6 @@
             <router-link to='/New'><img class="logo" src="ressources/plus.svg" alt="plus"></router-link>
         </div>
 
-
-
         <nav>
             <!-- futures routes pour les autres pages -->
             <a href='/'>Accueil</a>
@@ -41,10 +39,12 @@
     </header>
     <main>
         <router-view
-                :users="users"
+                :user="user"
+                :message="message"
                 :definitions="definitions"
                 @add-def="adDef"
-                @sign-up="signup">
+                @sign-up="signup"
+                @connect-user="signin">
         </router-view>
     </main>
 </div>

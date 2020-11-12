@@ -19,22 +19,29 @@ var app = new Vue({
     el: '#app',
     data: {
         definitions: [],
-    },
-    props:{
-        users: {type: Array, default: []}
+        users:[],
+        message:'',
+        user:[]
     },
     async mounted () {
         const res = await axios.get('/api/definitions')
         this.definitions = res.data
-        const tab = await axios.get('/api/signin')
-        this.users = tab.data
     },
     methods: {
         async adDef (article) {
             await axios.post('/api/definition', article)
         },
         async signup(user){
-            await axios.post('/api/signup', user);
+            const res = await axios.post('/api/signup', user);
+            this.users.push(res.data)
+            alert('Inscription in vue-application')
+        },
+        async signin(user){
+            const res = await axios.post('/api/signin', user);
+            this.message = res.data.message
+            this.user = res.data.user
+            console.log(this.message, this.user)
+            alert('Connexion in vue-application')
         }
     }
 })

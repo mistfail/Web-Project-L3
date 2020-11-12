@@ -12,13 +12,14 @@
       </label>
     </div>
     <button type="submit">Connexion</button>
+    <h4>{{message}}</h4>
   </form>
 </template>
 
 <script>
 module.exports  = {
   props:{
-    users: {type: Array, default: []},
+    message: ''
   },
   data() {
     return {
@@ -30,12 +31,7 @@ module.exports  = {
   },
   methods: {
     signin () {
-      for (let i = 0; i < this.users.length; i++){
-        if(this.users[i].email === this.user.email){
-           return this.users[i].password === this.user.password
-        }
-      }
-      return false
+      this.$emit('connect-user', this.user)
     }
   }
 }
