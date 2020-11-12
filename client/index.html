@@ -36,11 +36,10 @@
             <router-link to='/New'>Ajout</router-link>
             <router-link to="/Inscription">Inscription</router-link>
             <router-link to="/Connexion">Connexion</router-link>
-            <router-link to="/Profil">Profil</router-link>
+            <router-link v-if="user[0] !== undefined" to="/Profil">Profil</router-link>
         </nav>
     </header>
     <main>
-        {{user}}
         <router-view
                 :user="user"
                 :message="message"

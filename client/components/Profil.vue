@@ -2,8 +2,8 @@
 <div id="page">
   <div id="profil">
     <h1>Mon profil</h1>
-    <p>Nom :</p>
-    <p>Email :</p>
+    <p>Nom : {{user[0].name}}</p>
+    <p>Email : {{user[0].email}}</p>
   </div>
   <div id="definition">
     <h1>Mes définitions</h1>
@@ -16,7 +16,10 @@
 
 <script>
 module.exports = {
-name: "Profil"
+name: "Profil",
+  props:{
+  user: []
+  }
 }
 </script>
 

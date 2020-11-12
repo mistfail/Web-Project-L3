@@ -7,7 +7,7 @@ const { Client } = require('pg')
 const client = new Client({
     user: 'postgres',
     host: 'localhost',
-    password: 'D0L1pr@nox',
+    password: 'Alex0606',
     database: 'Urbandico'
 })
 
@@ -18,7 +18,6 @@ class User {
         this.user = []
     }
 }
-
 
 router.use((req, res, next) => {
     if (typeof req.session.User === 'undefined') {

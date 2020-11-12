@@ -1,5 +1,5 @@
 <template>
-<form  id="user" @submit="signup">
+<form  id="user" @submit.prevent="signup">
   <h2>S'inscrire</h2>
   <div>
     <label for="email">

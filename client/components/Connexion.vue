@@ -1,5 +1,5 @@
 <template>
-  <form  id="user" @submit="signin">
+  <form  id="user" @submit.prevent="signin">
     <h2>Se connecter</h2>
     <div>
       <label for="email">
