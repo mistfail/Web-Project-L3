@@ -2,12 +2,14 @@ const Home = window.httpVueLoader('./components/Main.vue')
 const newDesc = window.httpVueLoader('./components/newDesc.vue')
 const Inscription = window.httpVueLoader('./components/Inscription.vue')
 const Connexion = window.httpVueLoader('./components/Connexion.vue')
+const Podium = window.httpVueLoader('./components/Podium.vue')
 
 const routes = [
     { path: '/', component: Home},
     { path: '/New', component: newDesc},
     { path: '/Inscription', component: Inscription},
-    { path: '/Connexion', component: Connexion}
+    { path: '/Connexion', component: Connexion},
+    {path: '/Podium', component: Podium}
 ]
 
 const router = new VueRouter({
