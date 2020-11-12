@@ -1,10 +1,14 @@
 <template>
   <div>
-    <article v-for="definition in definitions" class="definition">
-        <div>
-          <h2>{{ definition.name }}</h2>
-          <div>{{ definition.def }}</div>
-          <div>{{ definition.upvote }}</div>
+    <article v-for="definition in definitions">
+        <div class="fun">
+          <h2 class="title">{{ definition.name }}</h2>
+          <div class="definition">{{ definition.def }}</div>
+          <div class="upvote">
+            <img src="../ressources/up-arrow.svg" alt="upvote" class="vote">
+            <img src="../ressources/down-arrow.svg" alt="downvote" class="vote">
+            <div class="upvote">{{ definition.upvote }}</div>
+          </div>
         </div>
     </article>
     <button v-on:click="test">Test</button>
@@ -30,6 +34,34 @@ module.exports = {
 article {
   display: flex;
   border: 2px solid black;
-  margin: 30px 20% 30px 20%;
+  margin:60px 20% 30px 20%;
+  box-shadow:9px -9px black;
+}
+.fun{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.upvote{
+  align-self: flex-end;
+  margin: 10px;
+  display: flex;
+  align-items: center;
+}
+.vote{
+  height: 20px;
+  margin: 5px;
+}
+.title{
+  border: 2px solid black;
+  border-radius: 10px;
+  width: 30%;
+  text-align: center;
+  margin-left: 10px;
+  padding: 5px;
+}
+.definition{
+  width: 80%;
+  margin-left: 10px;
 }
 </style>
