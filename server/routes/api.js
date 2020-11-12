@@ -73,7 +73,7 @@ router.post('/definition', async (req, res) =>{
 })
 
 async function verifUtilisateur(email){
-    const sql = "SELECT count(*) FROM users WHERE email=$2"
+    const sql = "SELECT count(*) FROM users WHERE email=$1"
     const res = await client.query({
         text : sql,
         values:[email]
@@ -81,8 +81,8 @@ async function verifUtilisateur(email){
     return parseInt(res.rows[0].count)
 }
 
-async function insert(name, email, password){
-    const hash = await bcrypt.hash(password, 10)
+async function insert(nom, email, mdp){
+    const hash = await bcrypt.hash(mdp, 10)
     const s = "SELECT * FROM users"
     const re = await client.query({
         text : s,
@@ -93,19 +93,19 @@ async function insert(name, email, password){
         const sql = "INSERT INTO users(id, name, email, password) values (1, $1, $2, $3)"
         const res = await client.query({
             text : sql,
-            values:[name, email, hash]
+            values:[nom, email, hash]
         })
         return res.rowCount
     }
     const sql = "INSERT INTO users(id, name, email, password) select 1+max(id),$1, $2, $3 from users"
     const res = await client.query({
         text : sql,
-        values:[name, email, hash]
+        values:[nom, email, hash]
     })
     return res.rowCount
 }
 
-router.post('/signup', (req, res) => {
+router.post('/Inscription', (req, res) => {
     const name = req.body.name
     const email = req.body.email
     const password = req.body.password
@@ -126,7 +126,7 @@ router.post('/signup', (req, res) => {
 })
 
 async function verifMDP(email, mdp){
-    const sql = "SELECT password FROM users WHERE email=$2"
+    const sql = "SELECT password FROM users WHERE email=$1"
     const res = await client.query({
         text : sql,
         values:[email]
@@ -139,7 +139,7 @@ async function verifMDP(email, mdp){
 }
 
 async function returnID(email){
-    const sql = "SELECT id FROM users WHERE email=$2"
+    const sql = "SELECT id FROM users WHERE email=$1"
     const res = await client.query({
         text : sql,
         values:[email]
@@ -156,7 +156,7 @@ async function createUser(id){
     return res.rows
 }
 
-router.post('/signin', (req, res) => {
+router.post('/Connexion', (req, res) => {
     let email2 = req.body.email
     let mdp = req.body.password
 
