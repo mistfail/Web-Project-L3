@@ -6,7 +6,7 @@
         <input type="text" v-model="newDef.name" placeholder="Titre de la definition" required>
       </label>
       <label>
-        <textarea v-model="newDef.def" required></textarea>
+        <textarea v-model="newDef.def" required placeholder="Definition"></textarea>
       </label>
       <button type="submit">Ajouter</button>
     </form>

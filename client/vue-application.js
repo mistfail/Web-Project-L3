@@ -37,13 +37,11 @@ var app = new Vue({
             const res = await axios.post('/api/Inscription', users);
             this.users.push(res.data)
             alert('Inscription in vue-application')
-            history.back()
         },
         async signin(user){
             const res = await axios.post('/api/Connexion', user);
             this.message = res.data.message
             this.user = res.data.user
-            history.back()
             alert('Connexion in vue-application')
         }
     }

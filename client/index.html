@@ -30,7 +30,6 @@
             <input class="recherche" type="text" placeholder="Recherche dans le dictionnaire">
             <router-link v-if="user[0] !== undefined" to='/New'><img class="logo" src="ressources/plus.svg" alt="plus"></router-link>
         </div>
-
         <nav>
             <!-- futures routes pour les autres pages -->
             <a href='/'>Accueil</a>
@@ -40,6 +39,7 @@
         </nav>
     </header>
     <main>
+        {{user}}
         <router-view
                 :user="user"
                 :message="message"
