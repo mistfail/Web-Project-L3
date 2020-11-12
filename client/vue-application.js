@@ -23,6 +23,7 @@ var app = new Vue({
     el: '#app',
     data: {
         definitions: [],
+        podium :[],
         users:[],
         message:'',
         user:[]
@@ -30,6 +31,8 @@ var app = new Vue({
     async mounted () {
         const res = await axios.get('/api/definitions')
         this.definitions = res.data
+        const res2 = await axios.get('/api/podium')
+        this.podium = res2.data
     },
     methods: {
         async adDef (article) {
