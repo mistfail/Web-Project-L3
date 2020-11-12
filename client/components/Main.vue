@@ -5,8 +5,8 @@
           <h2 class="title">{{ definition.name }}</h2>
           <div class="definition">{{ definition.def }}</div>
           <div class="upvote">
-            <img src="../ressources/up-arrow.svg" alt="upvote" class="vote">
-            <img src="../ressources/down-arrow.svg" alt="downvote" class="vote">
+            <button style="background: none; border: none"><img src="../ressources/up-arrow.svg" alt="upvote" class="vote"></button>
+            <button style="background: none; border: none"><img src="../ressources/down-arrow.svg" alt="downvote" class="vote"></button>
             <div class="upvote">{{ definition.upvote }}</div>
           </div>
         </div>
