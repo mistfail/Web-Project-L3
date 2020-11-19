@@ -7,7 +7,7 @@ const { Client } = require('pg')
 const client = new Client({
     user: 'postgres',
     host: 'localhost',
-    password: 'Alex0606',
+    password: 'D0L1pr@nox',
     database: 'Urbandico'
 })
 
@@ -197,5 +197,12 @@ router.put('/def', (req, res) => {
 router.delete('/def', (req, res) => {
 
 })
-
+// Benjamin doit le faire
+router.get('/podium', async(req,res)=>{
+    const test = "SELECT * FROM definition ORDER BY upvote"
+    const rendu = await client.query({
+        text: sql,
+    })
+    res.json(rendu.rows)
+})
 module.exports = router
