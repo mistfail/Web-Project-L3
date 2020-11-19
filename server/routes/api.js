@@ -39,7 +39,7 @@ router.get('/definitions', async (req, res) => {
     res.json(defs)
 })
 
-router.get('/definition', async(req, res) =>{
+router.get('/podium', async(req, res) =>{
     let defs = await getDef()
     res.json(defs)
 })
@@ -190,6 +190,12 @@ router.post('/Connexion', (req, res) => {
             res.json({ message: 'Email incorrect' }).status(401)
     })
 })
+// Alexandre doit le faire
+router.put('/def', (req, res) => {
 
+})
+router.delete('/def', (req, res) => {
+
+})
 
 module.exports = router
