@@ -7,7 +7,7 @@ const { Client } = require('pg')
 const client = new Client({
     user: 'postgres',
     host: 'localhost',
-    password: 'D0L1pr@nox',
+    password: 'Alex0606',
     database: 'Urbandico'
 })
 
@@ -258,19 +258,37 @@ router.put('/definition', async(req, res) => {
 })
 
 router.delete('/definition', async(req, res) => {
-    let id = req.body.id;
-    let sql = 'DELETE FROM definition WHERE rid=$1'
-    let result = await client.query({
+
+   const input = {
+       def : req.body.def,
+       downvote : req.body.downvote,
+       id : req.body.id,
+       name: req.body.name,
+       upvote: req.body.upvote,
+       userid: req.body.userid
+   }
+
+    console.log(input)
+
+    let sql = "DELETE FROM definitions WHERE id=$1"
+    await client.query({
         text: sql,
-        values: [id]
-    })
-    res.json(result)
+        values: [input.id]
+    });
+
+    let result = await client.query({
+        text: "SELECT * FROM definitions WHERE id=$1",
+        values: [input.id]
+    });
+    res.json(result.rows)
 })
+
 router.get('/podium', async(req,res)=>{
-    const test = "SELECT * FROM public.definition ORDER BY upvote"
+    const test = "SELECT * FROM public.definitions ORDER BY upvote"
     const rendu = await client.query({
         text: test,
     })
+    console.log(rendu.rows)
     res.json(rendu.rows)
 })
 

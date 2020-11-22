@@ -11,7 +11,7 @@
     <article v-for="def in defs" :key="def.id" style="background: white">
       <h4>{{def.name}}</h4>
       <p>{{def.def}}</p>
-      <button v-if="defs !== undefined" v-on:click="modifDef" type="submit">Modifier</button>
+      <button v-if="defs !== undefined" v-on:click="deleteDef(def)" type="submit">Supprimer</button>
     </article>
   </div>
   <div id="article">
@@ -39,8 +39,8 @@ name: "Profil",
         }
       }
     },
-    modifDef() {
-      console.log("modif")
+    deleteDef(definition) {
+      this.$emit('delete-def', definition)
     }
   }
 }
