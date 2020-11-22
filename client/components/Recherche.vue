@@ -28,15 +28,16 @@ module.exports = {
 name: "Recherche",
   props:{
     definitions : {type : Array},
-    def : {type: Array, default: []}
   },
   data(){
   return {
     titre: "",
+    def : {type: Array},
     }
   },
   methods: {
     rechercher(){
+      this.def = []
       for(let i = 0; i < this.definitions.length; i++){
         if(this.titre === this.definitions[i].name){
           for(let j = 0; j < this.def.length; j++){

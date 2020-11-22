@@ -24,21 +24,14 @@
                 </div>
             </div>
             <img id="urbandico" alt="Logo" src="ressources/Urban dico white.png">
-            <router-link to="/Inscription"><img src="ressources/login.svg" alt="login" class="logo"></router-link>
+            <router-link v-if="user[0] === undefined" to="/Inscription"><img src="ressources/login.svg" alt="login" class="logo"></router-link>
+            <router-link v-if="user[0] !== undefined" to="/Profil"><img src="ressources/login.svg" alt="login" class="logo"></router-link>
         </div>
 
         <div id="headersecond">
             <p style="font-family: Calibri, sans-serif; font-size: 36px; color: white" >L’Encomium urbain </p>
             <router-link v-if="user[0] !== undefined" to='/New'><img class="logo" src="ressources/plus.svg" alt="plus"></router-link>
         </div>
-        <nav>
-            <!-- futures routes pour les autres pages -->
-            <a href='/'>Accueil</a>
-            <router-link to='/New'>Ajout</router-link>
-            <router-link to="/Inscription">Inscription</router-link>
-            <router-link to="/Connexion">Connexion</router-link>
-            <router-link v-if="user[0] !== undefined" to="/Profil">Profil</router-link>
-        </nav>
     </header>
     <main>
         <router-view

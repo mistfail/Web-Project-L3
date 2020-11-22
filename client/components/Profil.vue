@@ -29,16 +29,17 @@ name: "Profil",
   props:{
     user: {type: Array, default: []},
     definitions: {type: Array, default: []},
-    defs : {type: Array, default: []},
     bool : false,
   },
   data(){
     return {
-      sup: 0
+      sup: 0,
+      defs : {type: Array},
     }
   },
   methods: {
     myDefs(){
+      this.defs = []
       this.bool = true
       for(let i = 0; i < this.definitions.length; i++){
         if(this.user[0].id === this.definitions[i].userid){
