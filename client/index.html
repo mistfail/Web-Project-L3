@@ -19,7 +19,7 @@
                 <img class="logo" src="ressources/menu-button.svg" alt="bouton de menu">
                 <div id="nav">
                     <p><router-link to='/'>Accueil</router-link></p>
-                    <p><router-link to="/Podium">Podium</router-link></p>
+                    <p><router-link  v-if="user[0] !== undefined" to="/Podium">Podium</router-link></p>
                     <p><router-link to="/Recherche">Recherche</router-link></p>
                 </div>
             </div>
@@ -28,7 +28,7 @@
         </div>
 
         <div id="headersecond">
-            <input id="recherche" type="text" placeholder="Recherche dans le dictionnaire">
+            <p style="font-family: Calibri, sans-serif; font-size: 36px; color: white" >L’Encomium urbain </p>
             <router-link v-if="user[0] !== undefined" to='/New'><img class="logo" src="ressources/plus.svg" alt="plus"></router-link>
         </div>
         <nav>

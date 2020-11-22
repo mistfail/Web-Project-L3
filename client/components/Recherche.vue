@@ -1,19 +1,22 @@
 <template>
   <div>
     <form @submit="rechercher">
-      <label>
-        <input type="text" required placeholder="Définition" id="recherche" v-model="titre">
-      </label>
-      <button type="submit" v-on:click="rechercher">Rechercher</button>
+      <div style="margin: 60px 0 0 400px">
+        <label>
+          <input type="text" required placeholder="Définition" id="recherche" v-model="titre">
+        </label>
+        <button type="submit">Rechercher</button>
+      </div>
     </form>
-    <article v-for="definition in def" v-if="this.titre === definition.name">
+    <article v-for="definition in def">
       <div class="fun">
         <h2 class="title">{{ definition.name }}</h2>
         <div class="definition">{{ definition.def }}</div>
         <div class="upvote">
           <button style="background: none; border: none"><img src="../ressources/up-arrow.svg" alt="upvote" class="vote"></button>
+          <div class="upvote">{{ definition.upvote}}</div>
           <button style="background: none; border: none"><img src="../ressources/down-arrow.svg" alt="downvote" class="vote"></button>
-          <div class="upvote">{{ definition.upvote }}</div>
+          <div class="upvote">{{ definition.downvote }}</div>
         </div>
       </div>
     </article>
@@ -33,14 +36,17 @@ name: "Recherche",
     }
   },
   methods: {
-    rechercher(recherche){
-      console.log(recherche)
+    rechercher(){
       for(let i = 0; i < this.definitions.length; i++){
-        if(recherche === this.definitions[i].name){
+        if(this.titre === this.definitions[i].name){
+          for(let j = 0; j < this.def.length; j++){
+            if(this.definitions[i] === this.def[j]){
+              return
+            }
+          }
           this.def.push(this.definitions[i])
         }
       }
-      console.log(this.def)
     }
   }
 }
