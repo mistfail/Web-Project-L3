@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="page">
     <h2>Ajouter une nouvelle definition</h2>
     <form @submit="adDef">
       <label>
@@ -49,6 +49,11 @@ form{
 }
 h2{
   text-align: center;
+}
+#page{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 </style>
 

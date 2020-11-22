@@ -39,11 +39,6 @@ router.get('/definitions', async (req, res) => {
     res.json(defs)
 })
 
-router.get('/podium', async(req, res) =>{
-    let defs = await getDef()
-    res.json(defs)
-})
-
 router.post('/definition', async (req, res) =>{
     const name = req.body.name
     const def = req.body.def
@@ -284,7 +279,7 @@ router.delete('/definition', async(req, res) => {
 })
 
 router.get('/podium', async(req,res)=>{
-    const test = "SELECT * FROM public.definitions ORDER BY upvote"
+    const test = "SELECT * FROM public.definitions ORDER BY upvote DESC"
     const rendu = await client.query({
         text: test,
     })
