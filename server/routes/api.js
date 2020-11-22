@@ -254,27 +254,16 @@ router.put('/definition', async(req, res) => {
 
 router.delete('/definition', async(req, res) => {
 
-   const input = {
-       def : req.body.def,
-       downvote : req.body.downvote,
-       id : req.body.id,
-       name: req.body.name,
-       upvote: req.body.upvote,
-       userid: req.body.userid
-   }
+    let id = req.body.id
 
-    console.log(input)
+    console.log(id)
 
-    let sql = "DELETE FROM definitions WHERE id=$1"
-    await client.query({
-        text: sql,
-        values: [input.id]
-    });
-
+    let sql = "DELETE FROM definitions WHERE id= $1"
     let result = await client.query({
-        text: "SELECT * FROM definitions WHERE id=$1",
-        values: [input.id]
+        text: sql,
+        values: [id]
     });
+
     res.json(result.rows)
 })
 
