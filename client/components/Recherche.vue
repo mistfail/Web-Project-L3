@@ -1,10 +1,10 @@
 <template>
   <div>
-    <form @submit="recherche">
+    <form>
       <label>
         <input type="text" required placeholder="Définition" id="recherche" v-model="titre">
       </label>
-      <button type="submit">Ajouter</button>
+      <button type="submit">Rechercher</button>
     </form>
     <article v-for="definition in definitions" v-if="this.titre === definition.name">
       <div class="fun">
@@ -30,10 +30,6 @@ name: "Recherche",
   return {
     titre: "",
     }
-  },
-  methods:{
-  recherche(){
-  }
   }
 }
 </script>
