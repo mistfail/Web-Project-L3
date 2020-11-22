@@ -9,7 +9,7 @@
     <h1>Mes définitions</h1>
     <button v-if="!bool" type="submit" v-on:click="myDefs">Refresh</button>
     <div>
-      <article v-if="defs !== undefined && defs !== []" v-for="definition in defs" :key="definition.id" style="background: white">
+      <article v-if="defs !== undefined" v-for="definition in defs" :key="definition.id" style="background: white">
         <h4>{{definition.name}}</h4>
         <p>{{definition.def}}</p>
         <button v-if="defs !== undefined" v-on:click="deleteDef(definition)" type="submit">Supprimer</button>
@@ -34,7 +34,7 @@ name: "Profil",
   data(){
     return {
       sup: 0,
-      defs : {type: Array},
+      defs : {},
     }
   },
   methods: {

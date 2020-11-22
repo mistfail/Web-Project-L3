@@ -32,7 +32,7 @@ name: "Recherche",
   data(){
   return {
     titre: "",
-    def : {type: Array},
+    def : {},
     }
   },
   methods: {
