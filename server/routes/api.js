@@ -197,12 +197,12 @@ router.put('/def', (req, res) => {
 router.delete('/def', (req, res) => {
 
 })
-// Benjamin doit le faire
 router.get('/podium', async(req,res)=>{
-    const test = "SELECT * FROM definition ORDER BY upvote"
+    const test = "SELECT * FROM public.definition ORDER BY upvote"
     const rendu = await client.query({
-        text: sql,
+        text: test,
     })
     res.json(rendu.rows)
 })
+
 module.exports = router

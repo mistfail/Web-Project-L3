@@ -1,7 +1,7 @@
 <template>
   <div>
+    <h2>Ajouter une nouvelle definition</h2>
     <form @submit="adDef">
-      <h2>Ajouter une nouvelle definition</h2>
       <label>
         <input type="text" v-model="newDef.name" placeholder="Titre de la definition" required>
       </label>
@@ -38,7 +38,17 @@ module.exports = {
 
 <style>
 textarea{
-  width: 50%;
+  width: 200px;
+  margin: 0 20px 0 20px;
+}
+form{
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  margin: auto;
+}
+h2{
+  text-align: center;
 }
 </style>
 

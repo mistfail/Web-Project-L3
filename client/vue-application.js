@@ -4,6 +4,7 @@ const Inscription = window.httpVueLoader('./components/Inscription.vue')
 const Connexion = window.httpVueLoader('./components/Connexion.vue')
 const Podium = window.httpVueLoader('./components/Podium.vue')
 const Profil = window.httpVueLoader('./components/Profil.vue')
+const Recherche = window.httpVueLoader('./components/Recherche.vue')
 
 const routes = [
     { path: '/', component: Home},
@@ -11,7 +12,8 @@ const routes = [
     { path: '/Inscription', component: Inscription},
     { path: '/Connexion', component: Connexion},
     { path: '/Podium', component: Podium},
-    { path: '/Profil', component: Profil}
+    { path: '/Profil', component: Profil},
+    { path : '/Recherche', component: Recherche}
 ]
 
 const router = new VueRouter({
@@ -26,7 +28,7 @@ var app = new Vue({
         podium :[],
         users:[],
         message:'',
-        user:[]
+        user:[],
     },
     async mounted () {
         const res = await axios.get('/api/definitions')
