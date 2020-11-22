@@ -191,11 +191,97 @@ router.post('/Connexion', (req, res) => {
     })
 })
 // Alexandre doit le faire
-router.put('/def', (req, res) => {
 
+
+async function getConnections(mail){
+    const sql = "SELECT * FROM public.users WHERE email='"+mail+"';"
+    const rendu = await client.query({
+        text: sql
+    })
+    console.log(rendu.rows[0].password)
+    return rendu.rows
+}
+
+router.post('/login', async (req, res) =>{
+    let input = {
+        email : req.body.email,
+        password : req.body.password
+    }
+    const rendu = await getConnections(input.email)
+    if(rendu.length > 0){
+        console.log(rendu)
+        if(await bcrypt.compare(input.password,rendu[0].password)){
+            req.session.userId = rendu[0].id
+            res.json({message :"job done"})
+        }
+        else{
+            res.status(400).json({message :"bad password"})
+        }
+    }
+    else{
+        res.status(400).json({message :"not good"})
+    }
 })
-router.delete('/def', (req, res) => {
 
+router.put('/definition', async(req, res) => {
+    let input = {
+        id : req.body.id,
+        name : req.body.name,
+        def : req.body.def,
+        upvote : req.body.upvote,
+        userid : req.body.userid,
+        downvote : req.body.downvote
+    }
+
+    let defs = await client.query({
+        text: "SELECT * FROM definition WHERE id=$1",
+        values: [input.id]
+    })
+
+    if (defs.rows.length < 1) {
+        res.json(null)
+        return
+    }
+
+    let sql = "UPDATE definition SET name = $1 WHERE id=$2"
+    await client.query({
+        text: sql,
+        values: [input.name, input.id]
+    });
+
+     let sql1 = "UPDATE definition SET def = $1 WHERE id=$2"
+    await client.query({
+        text: sql,
+        values: [input.def, input.id]
+    });
+
+     let sql2 = "UPDATE definition SET upvote = $1 WHERE id=$2"
+    await client.query({
+        text: sql,
+        values: [input.upvote, input.id]
+    });
+
+     let sql3 = "UPDATE definition SET downvote = $1 WHERE id=$2"
+    await client.query({
+        text: sql,
+        values: [input.downvote, input.id]
+    });
+
+    let result = await client.query({
+        text: "SELECT * FROM definition WHERE rid=$1",
+        values: [input.rid]
+    });
+    res.json(result.rows)
+})
+
+router.delete('/definition', async(req, res) => {
+    let id = req.body.id;
+    let sql = 'DELETE FROM definition WHERE rid=$1'
+    let result = await client.query({
+        text: sql,
+        values: [id]
+    })
+    res.json(result)
 })
 
 module.exports = router
