@@ -5,8 +5,8 @@
           <h2 class="title">{{ definition.name }}</h2>
           <div class="definition">{{ definition.def }}</div>
           <div class="upvote">
-            <button style="background: none; border: none"><img src="../ressources/up-arrow.svg" alt="upvote" class="vote"></button>
-            <button style="background: none; border: none"><img src="../ressources/down-arrow.svg" alt="downvote" class="vote"></button>
+            <button style="background: none; border: none"><img src="../ressources/up-arrow.svg" alt="upvote" class="vote" v-on:click="upvote"></button>
+            <button style="background: none; border: none"><img src="../ressources/down-arrow.svg" alt="downvote" class="vote" v-on:click="downvote"></button>
             <div class="upvote">{{ definition.upvote }}</div>
           </div>
         </div>
@@ -20,6 +20,12 @@ module.exports = {
     definitions: {type: Array, default: []},
   },
   methods: {
+    upvote(){
+
+    },
+    downvote(){
+
+    }
   }
 }
 

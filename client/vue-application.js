@@ -50,6 +50,13 @@ var app = new Vue({
             this.message = res.data.message
             this.user = res.data.user
             alert('Connexion in vue-application')
+        },
+        async modifDef(definition){
+            await axios.put('/api/definition', definition);
+        },
+        async deleteDef(definition){
+            await axios.delete('/api/definition', definition);
         }
+
     }
 })
