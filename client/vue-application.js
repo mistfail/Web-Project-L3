@@ -54,7 +54,12 @@ var app = new Vue({
         },
         async deleteDef(definition){
             await axios.delete('/api/definition', definition);
+        },
+        async upVote(definition){
+            await axios.put('/api/definition', definition)
+        },
+        async downVote(definition){
+            await axios.put('/api/definition', definition)
         }
-
     }
 })

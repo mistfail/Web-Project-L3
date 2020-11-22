@@ -5,9 +5,10 @@
           <h2 class="title">{{ definition.name }}</h2>
           <div class="definition">{{ definition.def }}</div>
           <div class="upvote">
-            <button style="background: none; border: none"><img src="../ressources/up-arrow.svg" alt="upvote" class="vote" v-on:click="upvote"></button>
-            <button style="background: none; border: none"><img src="../ressources/down-arrow.svg" alt="downvote" class="vote" v-on:click="downvote"></button>
+            <button style="background: none; border: none"><img src="../ressources/up-arrow.svg" alt="upvote" class="vote" v-on:click="upVote(definition)"></button>
             <div class="upvote">{{ definition.upvote }}</div>
+            <button style="background: none; border: none"><img src="../ressources/down-arrow.svg" alt="downvote" class="vote" v-on:click="downVote(definition)"></button>
+            <div class="upvote">{{ definition.downvote }}</div>
           </div>
         </div>
     </article>
@@ -20,11 +21,13 @@ module.exports = {
     definitions: {type: Array, default: []},
   },
   methods: {
-    upvote(){
-
+    upVote(definition){
+      definition.upvote = definition.upvote + 1
+      this.$emit('up-vote', definition)
     },
-    downvote(){
-
+    downVote(definition){
+      definition.downvote = definition.downvote + 1
+      this.$emit('down-vote', definition)
     }
   }
 }

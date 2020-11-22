@@ -224,6 +224,7 @@ router.post('/login', async (req, res) =>{
 })
 
 router.put('/definition', async(req, res) => {
+
     let input = {
         id : req.body.id,
         name : req.body.name,
@@ -234,7 +235,7 @@ router.put('/definition', async(req, res) => {
     }
 
     let defs = await client.query({
-        text: "SELECT * FROM definition WHERE id=$1",
+        text: "SELECT * FROM definitions WHERE id=$1",
         values: [input.id]
     })
 
@@ -243,33 +244,15 @@ router.put('/definition', async(req, res) => {
         return
     }
 
-    let sql = "UPDATE definition SET name = $1 WHERE id=$2"
+    let sql = "UPDATE definitions SET name = $2, def = $3, upvote = $4, userid = $5, downvote = $6 WHERE id=$1"
     await client.query({
         text: sql,
-        values: [input.name, input.id]
-    });
-
-     let sql1 = "UPDATE definition SET def = $1 WHERE id=$2"
-    await client.query({
-        text: sql,
-        values: [input.def, input.id]
-    });
-
-     let sql2 = "UPDATE definition SET upvote = $1 WHERE id=$2"
-    await client.query({
-        text: sql,
-        values: [input.upvote, input.id]
-    });
-
-     let sql3 = "UPDATE definition SET downvote = $1 WHERE id=$2"
-    await client.query({
-        text: sql,
-        values: [input.downvote, input.id]
+        values: [input.id, input.name, input.def, input.upvote, input.userid, input.downvote]
     });
 
     let result = await client.query({
-        text: "SELECT * FROM definition WHERE rid=$1",
-        values: [input.rid]
+        text: "SELECT * FROM definitions WHERE id=$1",
+        values: [input.id]
     });
     res.json(result.rows)
 })
