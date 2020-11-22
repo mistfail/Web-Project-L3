@@ -20,6 +20,7 @@
                 <div id="nav">
                     <p><router-link to='/'>Accueil</router-link></p>
                     <p><router-link to="/Podium">Podium</router-link></p>
+                    <p><router-link to="/Recherche">Recherche</router-link></p>
                 </div>
             </div>
             <img id="urbandico" alt="Logo" src="ressources/Urban dico white.png">
@@ -44,6 +45,7 @@
                 :user="user"
                 :message="message"
                 :definitions="definitions"
+                :podium ="podium"
                 @add-def="adDef"
                 @sign-up="signup"
                 @connect-user="signin"
@@ -60,7 +62,7 @@
 </body>
 <style>
     body{
-        background-color: #FDDBD7;
+        background-color: antiquewhite;
     }
     #nav{
         display: none;
