@@ -33,7 +33,6 @@ name: "Recherche",
   },
   methods:{
   recherche(){
-    this.titre = titre
   }
   }
 }
@@ -74,5 +73,11 @@ article {
 .definition{
   width: 80%;
   margin-left: 10px;
+}
+button{
+  border: none;
+  padding: 5px;
+  background-color: #6B3012;
+  color: white;
 }
 </style>
