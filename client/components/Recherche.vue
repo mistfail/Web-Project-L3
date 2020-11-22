@@ -1,12 +1,12 @@
 <template>
   <div>
-    <form>
+    <form @submit="rechercher">
       <label>
         <input type="text" required placeholder="Définition" id="recherche" v-model="titre">
       </label>
-      <button type="submit">Rechercher</button>
+      <button type="submit" v-on:click="rechercher">Rechercher</button>
     </form>
-    <article v-for="definition in definitions" v-if="this.titre === definition.name">
+    <article v-for="definition in def" v-if="this.titre === definition.name">
       <div class="fun">
         <h2 class="title">{{ definition.name }}</h2>
         <div class="definition">{{ definition.def }}</div>
@@ -24,11 +24,23 @@
 module.exports = {
 name: "Recherche",
   props:{
-    definitions : {type : Array}
+    definitions : {type : Array},
+    def : {type: Array, default: []}
   },
   data(){
   return {
     titre: "",
+    }
+  },
+  methods: {
+    rechercher(recherche){
+      console.log(recherche)
+      for(let i = 0; i < this.definitions.length; i++){
+        if(recherche === this.definitions[i].name){
+          this.def.push(this.definitions[i])
+        }
+      }
+      console.log(this.def)
     }
   }
 }
