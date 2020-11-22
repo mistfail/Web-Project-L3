@@ -7,6 +7,12 @@
   </div>
   <div id="definition">
     <h1>Mes définitions</h1>
+    <button v-if="!bool" type="submit" v-on:click="myDefs">Refresh</button>
+    <article v-for="def in defs" :key="def.id" style="background: white">
+      <h4>{{def.name}}</h4>
+      <p>{{def.def}}</p>
+      <button v-if="defs !== undefined" v-on:click="modifDef" type="submit">Modifier</button>
+    </article>
   </div>
   <div id="article">
 
@@ -18,7 +24,24 @@
 module.exports = {
 name: "Profil",
   props:{
-  user: []
+    user: {type: Array, default: []},
+    definitions: {type: Array, default: []},
+    defs : {type: Array, default: []},
+    bool : false,
+  },
+  methods: {
+    myDefs(){
+      this.bool = true
+      for(let i = 0; i < this.definitions.length; i++){
+        if(this.user[0].id === this.definitions[i].userid){
+          console.log(this.definitions[i])
+          this.defs.push(this.definitions[i])
+        }
+      }
+    },
+    modifDef() {
+      console.log("modif")
+    }
   }
 }
 </script>
